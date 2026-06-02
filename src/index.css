@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --color-living-green: #007B5E;
+  --color-living-bg: #FDFDFD;
+  --color-living-text-main: #111111;
+  --color-living-text-muted: #4B5563;
+  --color-living-border: #E5E7EB;
+
+  --color-teal-deep: #004d40;
+}
+
+@layer base {
+  body {
+    @apply bg-living-bg text-living-text-main font-sans antialiased;
+  }
+}
+
+@layer components {
+  .header-label {
+    @apply text-[9px] font-bold tracking-[0.25em] uppercase text-living-text-muted/70 mb-4 block;
+  }
+
+  .section-divider {
+    @apply border-t border-black/5 w-full mb-10 mt-1;
+  }
+
+  .heading-primary {
+    @apply text-5xl md:text-6xl font-medium tracking-tight text-living-text-main mb-12;
+  }
+
+  .heading-secondary {
+    @apply text-base font-bold tracking-widest text-living-text-main mb-6 uppercase;
+  }
+
+  .body-editorial {
+    @apply text-xl leading-relaxed text-living-text-main/70 max-w-4xl mb-10 font-[400];
+  }
+
+  .bullet-list {
+    @apply space-y-3;
+  }
+
+  .bullet-item {
+    @apply flex items-start gap-4 text-base text-living-text-muted leading-relaxed max-w-2xl;
+  }
+
+  .bullet-point {
+    @apply w-1 h-1 rounded-full bg-living-green mt-2.5 shrink-0;
+  }
+
+  .callout-box {
+    @apply bg-neutral-50 px-8 py-7 border-l border-living-green text-lg text-living-text-main leading-relaxed;
+  }
+}

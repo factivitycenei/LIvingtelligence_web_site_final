@@ -1,0 +1,6 @@
+{
+  "name": "Livingtelligence",
+  "description": "Livingtelligence helps organizations observe, mitigate, and nourish human-AI phenomena before they become invisible organizational patterns.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
