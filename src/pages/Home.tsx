@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useMemo } from 'react';
 import { motion, useScroll, useTransform, useMotionValueEvent } from 'motion/react';
 import { Link } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
 import Logo from '../components/Logo';
 import { Custodian3Diagram } from '../components/Diagrams';
 import { translations } from '../translations';
@@ -307,6 +308,7 @@ export default function Home() {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [dotDensity, setDotDensity] = useState(1);
   const [shouldFlicker, setShouldFlicker] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     let newState: 'presencia' | 'observacion' | 'integracion' | 'ambiente' = 'presencia';
@@ -365,6 +367,8 @@ export default function Home() {
 
       <nav className={`fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center transition-all duration-500 ${isDarkTheme ? 'bg-zinc-900/80 backdrop-blur-md border-b border-white/5 text-white' : 'bg-white/80 backdrop-blur-md border-b border-zinc-100 text-zinc-900'}`}>
         <Logo isDark={isDarkTheme} />
+        
+        {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-5 lg:gap-8 xl:gap-10 text-[11px] lg:text-[12px] font-medium tracking-[0.25em] uppercase">
           <a href="#desafio" className="opacity-80 hover:opacity-100 hover:text-teal-deep transition-all duration-300">{t.nav.desafio}</a>
           <a href="#fenomenos" className="opacity-80 hover:opacity-100 hover:text-teal-deep transition-all duration-300">{t.nav.fenomenos}</a>
@@ -380,7 +384,74 @@ export default function Home() {
             {lang === 'es' ? 'EN' : 'ES'}
           </button>
         </div>
+
+        {/* Mobile Menu Button */}
+        <div className="flex md:hidden items-center gap-4">
+          <button 
+            onClick={() => setLang(lang === 'es' ? 'en' : 'es')}
+            className={`px-2.5 py-1 text-[10px] font-medium tracking-wider border transition-all ${isDarkTheme ? 'border-white/20' : 'border-zinc-200'}`}
+          >
+            {lang === 'es' ? 'EN' : 'ES'}
+          </button>
+          <button 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className={`p-1.5 focus:outline-none transition-colors ${isDarkTheme ? 'text-white' : 'text-zinc-900'}`}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </nav>
+
+      {/* Mobile Menu Overlay */}
+      {mobileMenuOpen && (
+        <div className={`fixed inset-x-0 top-[73px] z-40 md:hidden flex flex-col p-8 space-y-6 transition-all duration-300 ${isDarkTheme ? 'bg-zinc-900/95 border-b border-white/5 text-white' : 'bg-white/95 border-b border-zinc-200 text-zinc-900'} backdrop-blur-md max-h-[calc(100vh-73px)] overflow-y-auto`}>
+          <div className="flex flex-col space-y-4 text-[13px] font-bold tracking-[0.2em] uppercase">
+            <a 
+              href="#desafio" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="py-2 hover:text-teal-deep border-b border-zinc-150/20 pb-2 transition-colors"
+            >
+              {t.nav.desafio}
+            </a>
+            <a 
+              href="#fenomenos" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="py-2 hover:text-teal-deep border-b border-zinc-150/20 pb-2 transition-colors"
+            >
+              {t.nav.fenomenos}
+            </a>
+            <a 
+              href="#sistema" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="py-2 hover:text-teal-deep border-b border-zinc-150/20 pb-2 transition-colors"
+            >
+              {t.nav.sistema}
+            </a>
+            <a 
+              href="#biblioteca" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="py-2 hover:text-teal-deep border-b border-zinc-150/20 pb-2 transition-colors"
+            >
+              {t.nav.biblioteca}
+            </a>
+            <Link 
+              to="/about" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="py-2 hover:text-teal-deep border-b border-zinc-150/20 pb-2 transition-colors"
+            >
+              {t.nav.nosotros}
+            </Link>
+            <a 
+              href="#contacto" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="py-2 hover:text-teal-deep pb-2 transition-colors"
+            >
+              {t.nav.contacto}
+            </a>
+          </div>
+        </div>
+      )}
 
       <section id="hero" className="relative min-h-screen flex items-center px-8 md:px-24 pt-32 pb-24 overflow-hidden z-10">
         <div className="grid grid-cols-12 w-full max-w-7xl mx-auto gap-12 lg:gap-24 items-center">
@@ -817,13 +888,25 @@ export default function Home() {
           <div className="space-y-4 text-center md:text-left">
             <Logo isDark={isDarkTheme} />
             <div className={`text-[15px] font-bold tracking-[0.2em] uppercase transition-colors duration-1000 ${isDarkTheme ? 'text-white/20' : 'text-zinc-400'}`}>{t.footer.rights}</div>
-            <div className={`text-[14px] font-medium tracking-[0.15em] transition-colors duration-1000 ${isDarkTheme ? 'text-white/30' : 'text-zinc-500'} flex flex-col md:flex-row md:items-center gap-x-8 gap-y-2 mt-2`}>
+            <div className={`text-[13px] font-medium tracking-[0.15em] transition-colors duration-1000 ${isDarkTheme ? 'text-white/30' : 'text-zinc-500'} flex flex-wrap justify-center md:justify-start items-center gap-x-4 gap-y-2 mt-2 md:gap-x-6`}>
               <a href="mailto:aflores@livingtelligence.com" className="hover:text-teal-deep transition-colors lowercase">
                 aflores@livingtelligence.com
               </a>
               <span className={`hidden md:inline text-zinc-300 ${isDarkTheme ? 'opacity-20' : 'opacity-60'}`}>|</span>
-              <a href="https://github.com/factivitycenei/Livingtelligence-lab" target="_blank" rel="noopener noreferrer" className="hover:text-teal-deep transition-colors uppercase text-[12px] tracking-[0.2em]">
+              <a href="https://github.com/factivitycenei/Livingtelligence-lab" target="_blank" rel="noopener noreferrer" className="hover:text-teal-deep transition-colors uppercase text-[11px] tracking-[0.2em]">
                 GitHub
+              </a>
+              <span className={`hidden md:inline text-zinc-300 ${isDarkTheme ? 'opacity-20' : 'opacity-60'}`}>|</span>
+              <a href="https://armando593.substack.com/" target="_blank" rel="noopener noreferrer" className="hover:text-teal-deep transition-colors uppercase text-[11px] tracking-[0.2em]">
+                Substack
+              </a>
+              <span className={`hidden md:inline text-zinc-300 ${isDarkTheme ? 'opacity-20' : 'opacity-60'}`}>|</span>
+              <a href="https://x.com/Livingtelligenc" target="_blank" rel="noopener noreferrer" className="hover:text-teal-deep transition-colors uppercase text-[11px] tracking-[0.2em]">
+                X
+              </a>
+              <span className={`hidden md:inline text-zinc-300 ${isDarkTheme ? 'opacity-20' : 'opacity-60'}`}>|</span>
+              <a href="https://www.linkedin.com/in/armando-flores-b812a6413" target="_blank" rel="noopener noreferrer" className="hover:text-teal-deep transition-colors uppercase text-[11px] tracking-[0.2em]">
+                LinkedIn
               </a>
             </div>
           </div>
