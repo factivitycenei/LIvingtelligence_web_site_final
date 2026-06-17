@@ -347,7 +347,7 @@ export default function Home() {
   });
 
   return (
-    <div className={`min-h-screen selection:bg-teal-deep/10 selection:text-teal-deep font-sans relative transition-colors duration-1000 ${isDarkTheme ? 'bg-zinc-900' : 'bg-white'}`}>
+    <div className={`min-h-screen overflow-x-hidden selection:bg-teal-deep/10 selection:text-teal-deep font-sans relative transition-colors duration-1000 ${isDarkTheme ? 'bg-zinc-900' : 'bg-white'}`}>
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden flex items-center justify-center">
         <motion.div 
           style={{ opacity: backgroundOpacity, scale: backgroundScale, y: backgroundY }}
@@ -365,7 +365,7 @@ export default function Home() {
         </motion.div>
       </div>
 
-      <nav className={`fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center transition-all duration-500 ${isDarkTheme ? 'bg-zinc-900/80 backdrop-blur-md border-b border-white/5 text-white' : 'bg-white/80 backdrop-blur-md border-b border-zinc-100 text-zinc-900'}`}>
+      <nav className={`fixed top-0 w-full z-50 px-4 sm:px-8 py-4 sm:py-6 flex justify-between items-center transition-all duration-500 ${isDarkTheme ? 'bg-zinc-900/80 backdrop-blur-md border-b border-white/5 text-white' : 'bg-white/80 backdrop-blur-md border-b border-zinc-100 text-zinc-900'}`}>
         <Logo isDark={isDarkTheme} />
         
         {/* Desktop Menu */}
@@ -386,7 +386,7 @@ export default function Home() {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="flex md:hidden items-center gap-4">
+        <div className="flex md:hidden items-center gap-2 sm:gap-4">
           <button 
             onClick={() => setLang(lang === 'es' ? 'en' : 'es')}
             className={`px-2.5 py-1 text-[10px] font-medium tracking-wider border transition-all ${isDarkTheme ? 'border-white/20' : 'border-zinc-200'}`}
@@ -405,7 +405,7 @@ export default function Home() {
 
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
-        <div className={`fixed inset-x-0 top-[73px] z-40 md:hidden flex flex-col p-8 space-y-6 transition-all duration-300 ${isDarkTheme ? 'bg-zinc-900/95 border-b border-white/5 text-white' : 'bg-white/95 border-b border-zinc-200 text-zinc-900'} backdrop-blur-md max-h-[calc(100vh-73px)] overflow-y-auto`}>
+        <div className={`fixed inset-x-0 top-[62px] sm:top-[73px] z-40 md:hidden flex flex-col p-8 space-y-6 transition-all duration-300 ${isDarkTheme ? 'bg-zinc-900/95 border-b border-white/5 text-white' : 'bg-white/95 border-b border-zinc-200 text-zinc-900'} backdrop-blur-md max-h-[calc(100vh-62px)] overflow-y-auto`}>
           <div className="flex flex-col space-y-4 text-[13px] font-bold tracking-[0.2em] uppercase">
             <a 
               href="#desafio" 
@@ -453,38 +453,38 @@ export default function Home() {
         </div>
       )}
 
-      <section id="hero" className="relative min-h-screen flex items-center px-8 md:px-24 pt-32 pb-24 overflow-hidden z-10">
-        <div className="grid grid-cols-12 w-full max-w-7xl mx-auto gap-12 lg:gap-24 items-center">
+      <section id="hero" className="relative min-h-screen flex flex-col justify-center px-4 sm:px-8 md:px-24 pt-28 sm:pt-32 pb-20 sm:pb-24 overflow-hidden z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 w-full max-w-7xl mx-auto gap-12 lg:gap-24 items-center">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-            className="col-span-12 lg:col-span-7 space-y-12"
+            className="col-span-1 lg:col-span-7 space-y-12"
           >
-            <h1 className="text-5xl md:text-7xl font-light leading-[1.02] tracking-tighter text-zinc-900">
+            <h1 className="text-[26px] xs:text-[32px] sm:text-5xl md:text-7xl font-light leading-tight sm:leading-[1.02] tracking-tighter text-zinc-900">
               {t.hero.title1}<br />
               <span className="font-medium text-teal-deep block mt-4">{t.hero.title2}</span>
             </h1>
             <div className="space-y-8 max-w-xl">
-              <p className="text-xl md:text-2xl text-zinc-800 font-light tracking-tight leading-snug">
+              <p className="text-lg sm:text-xl md:text-2xl text-zinc-800 font-light tracking-tight leading-snug">
                 {t.hero.subtitle}
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-6">
-              <Link to="/signal-readout">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full max-w-md sm:max-w-none">
+              <Link to="/signal-readout" className="w-full sm:w-auto block sm:inline-block">
                 <motion.button 
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full sm:w-auto bg-teal-deep text-white px-10 py-6 text-[13px] font-bold tracking-[0.26em] uppercase transition-all hover:bg-teal-900 shadow-sm"
+                  className="w-full sm:w-auto bg-teal-deep text-white px-4 sm:px-10 py-5 sm:py-6 text-[11px] sm:text-[13px] font-bold tracking-[0.14em] sm:tracking-[0.26em] uppercase transition-all hover:bg-teal-900 shadow-sm whitespace-normal sm:whitespace-nowrap"
                 >
                   {t.hero.cta}
                 </motion.button>
               </Link>
-              <Link to="/scope-proposal">
+              <Link to="/scope-proposal" className="w-full sm:w-auto block sm:inline-block">
                 <motion.button 
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full sm:w-auto border border-zinc-200 text-zinc-900 px-10 py-6 text-[13px] font-bold tracking-[0.26em] uppercase transition-all hover:bg-zinc-50"
+                  className="w-full sm:w-auto border border-zinc-200 text-zinc-900 px-4 sm:px-10 py-5 sm:py-6 text-[11px] sm:text-[13px] font-bold tracking-[0.14em] sm:tracking-[0.26em] uppercase transition-all hover:bg-zinc-50 whitespace-normal sm:whitespace-nowrap"
                 >
                   {t.hero.ctaSecondary}
                 </motion.button>
@@ -654,42 +654,40 @@ export default function Home() {
               {t.sistema.caption}
             </p>
           </div>
-          <div className="grid grid-cols-12 gap-16 lg:gap-24">
-            <div className="col-span-12 lg:col-span-12 grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
-              {t.sistema.blocks.map((block, i) => (
-                <motion.div 
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="space-y-10"
-                >
-                  <div className="space-y-4">
-                    <p className="text-[14px] font-bold tracking-[0.26em] text-zinc-400 uppercase whitespace-pre-line h-14 flex flex-col justify-end">{block.sub}</p>
-                    <h4 className="text-2xl font-medium tracking-tight text-teal-deep">{block.label}</h4>
-                  </div>
-                  <div className="space-y-8">
-                    <p className="text-zinc-800 font-normal text-lg leading-snug">{block.desc}</p>
-                    <ul className="space-y-4 text-base text-zinc-500 font-light">
-                      {block.bullets.map((b, j) => (
-                        <li key={j} className="flex gap-4 items-center">
-                          <span className="w-1.5 h-px bg-zinc-200" />
-                          <span>{b}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
+            {t.sistema.blocks.map((block, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="space-y-10"
+              >
+                <div className="space-y-4">
+                  <p className="text-[14px] font-bold tracking-[0.26em] text-zinc-400 uppercase whitespace-pre-line h-14 flex flex-col justify-end">{block.sub}</p>
+                  <h4 className="text-2xl font-medium tracking-tight text-teal-deep">{block.label}</h4>
+                </div>
+                <div className="space-y-8">
+                  <p className="text-zinc-800 font-normal text-lg leading-snug">{block.desc}</p>
+                  <ul className="space-y-4 text-base text-zinc-500 font-light">
+                    {block.bullets.map((b, j) => (
+                      <li key={j} className="flex gap-4 items-center">
+                        <span className="w-1.5 h-px bg-zinc-200" />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       <section id="capacidades" className="py-32 px-8 overflow-hidden relative z-10">
-        <div className="max-w-7xl mx-auto grid grid-cols-12 gap-16 lg:gap-24 relative z-10">
-          <div className="col-span-12 lg:col-span-7 space-y-16">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 relative z-10">
+          <div className="col-span-1 lg:col-span-7 space-y-16">
             <div className="space-y-6">
               <span className={`text-[14px] font-bold tracking-[0.28em] uppercase block ${isDarkTheme ? 'text-white/30' : 'text-zinc-400'}`}>{t.capacidades.eyebrow}</span>
               <h2 className={`text-5xl md:text-6xl font-light tracking-tight ${isDarkTheme ? 'text-white' : 'text-zinc-900'}`}>
@@ -715,7 +713,7 @@ export default function Home() {
               ))}
             </ul>
           </div>
-          <div className="col-span-12 lg:col-span-5 flex flex-col justify-center space-y-12">
+          <div className="col-span-1 lg:col-span-5 flex flex-col justify-center space-y-12">
             <div className={`p-12 border-l-2 ${isDarkTheme ? 'border-teal-400 text-white' : 'border-teal-deep text-zinc-900'} bg-zinc-50/10`}>
               <p className="text-3xl font-light leading-snug italic tracking-tight">
                 {t.capacidades.quote}
@@ -788,8 +786,8 @@ export default function Home() {
 
       <section className="py-32 px-8 z-10 relative">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-12 gap-20 lg:gap-32 items-center">
-            <div className="col-span-12 lg:col-span-6 space-y-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-32 items-center">
+            <div className="col-span-1 lg:col-span-6 space-y-16">
               <div className="space-y-8">
                 <span className={`text-[14px] font-bold tracking-[0.28em] uppercase block ${isDarkTheme ? 'text-teal-400/60' : 'text-teal-deep/60'}`}>{t.direccion.eyebrow}</span>
                 <h2 className={`text-4xl md:text-5xl font-light tracking-tight leading-tight ${isDarkTheme ? 'text-white' : 'text-zinc-900'}`}>
@@ -811,7 +809,7 @@ export default function Home() {
                 </ul>
               </div>
             </div>
-            <div className="col-span-12 lg:col-span-6">
+            <div className="col-span-1 lg:col-span-6">
               <div className={`${isDarkTheme ? 'bg-white/5 border-white/5' : 'bg-zinc-50 border-zinc-100'} backdrop-blur-sm p-12 lg:p-16 space-y-12 border shadow-2xl shadow-zinc-900/5`}>
                 <p className={`text-[14px] font-bold tracking-[0.24em] uppercase ${isDarkTheme ? 'text-white/40' : 'text-zinc-400'}`}>{t.direccion.impact}</p>
                 <div className="space-y-8">
@@ -846,21 +844,21 @@ export default function Home() {
             </p>
           </div>
           <div className="flex flex-col items-center gap-12">
-            <div className="flex flex-col sm:flex-row gap-6 justify-center w-full max-w-2xl">
-              <Link to="/signal-readout" className="flex-1">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center w-full max-w-2xl">
+              <Link to="/signal-readout" className="flex-1 w-full block">
                 <motion.button 
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full bg-teal-deep text-white px-10 py-7 text-[13px] font-bold tracking-[0.26em] uppercase transition-all hover:bg-teal-900 shadow-2xl shadow-teal-900/20"
+                  className="w-full bg-teal-deep text-white px-4 sm:px-10 py-5 sm:py-7 text-[11px] sm:text-[13px] font-bold tracking-[0.14em] sm:tracking-[0.26em] uppercase transition-all hover:bg-teal-900 shadow-2xl shadow-teal-900/20 whitespace-normal sm:whitespace-nowrap"
                 >
                   {t.cierre.cta}
                 </motion.button>
               </Link>
-              <Link to="/scope-proposal" className="flex-1">
+              <Link to="/scope-proposal" className="flex-1 w-full block">
                 <motion.button 
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className={`w-full border px-10 py-7 text-[13px] font-bold tracking-[0.26em] uppercase transition-all ${isDarkTheme ? 'border-white/20 text-white hover:bg-white/5' : 'border-zinc-200 text-zinc-900 hover:bg-zinc-100'}`}
+                  className={`w-full border px-4 sm:px-10 py-5 sm:py-7 text-[11px] sm:text-[13px] font-bold tracking-[0.14em] sm:tracking-[0.26em] uppercase transition-all ${isDarkTheme ? 'border-white/20 text-white hover:bg-white/5' : 'border-zinc-200 text-zinc-900 hover:bg-zinc-100'} whitespace-normal sm:whitespace-nowrap`}
                 >
                   {t.cierre.ctaSecondary}
                 </motion.button>

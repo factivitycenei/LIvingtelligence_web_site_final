@@ -27,7 +27,7 @@ export default function Logo({ className = "", isDark = false, showText = true }
   };
 
   return (
-    <Link to="/" onClick={handleClick} className={`flex items-center gap-4 group ${className}`}>
+    <Link to="/" onClick={handleClick} className={`flex items-center gap-2 sm:gap-4 group ${className}`}>
       <div className="relative w-10 h-10 flex items-center justify-center">
         {/* The 'Tree of Intelligence' Icon */}
         <svg viewBox="0 0 100 100" className={isDark ? "text-white" : "text-zinc-900"}>
@@ -73,7 +73,7 @@ export default function Logo({ className = "", isDark = false, showText = true }
       </div>
       
       {showText && (
-        <span className={`text-[17px] tracking-[0.25em] uppercase transition-colors duration-500 ${isDark ? 'text-white' : 'text-zinc-900'} group-hover:text-teal-deep`}>
+        <span className={`text-[12px] sm:text-[17px] tracking-[0.16em] sm:tracking-[0.25em] uppercase transition-colors duration-500 ${isDark ? 'text-white' : 'text-zinc-900'} group-hover:text-teal-deep`}>
           <span className="font-bold">Living</span>
           <span className="font-normal opacity-80">telligence</span>
         </span>
